@@ -5,6 +5,7 @@
   angular
     .module('vizbox')
     .constant('moment', moment)
-    .constant('c3', c3);
+    .constant('c3', c3)
+    .constant('topojson', topojson);
 
 })();
