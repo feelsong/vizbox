@@ -6,7 +6,8 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, toastr) {
-      console.log('mainController init');
+  function MainController($scope, $http, geoLocation) {
+      $scope.geoChartId = 'geo';
+      $scope.geoLocation = geoLocation;
   }
 })();
