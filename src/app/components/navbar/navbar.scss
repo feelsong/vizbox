@@ -1,3 +1,15 @@
-.acme-navbar-text{
-  color: white;
+.navbar-inverse {
+    background-color: #FFF;
+    border-color: #9D9D9D;
+}
+
+.navbar {
+    background:transparent;
+    margin-bottom:3px;
+    border:0;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+color: lime;
+background-color: transparent;
 }
