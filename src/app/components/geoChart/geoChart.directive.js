@@ -13,9 +13,6 @@
           replace: true,
           scope: { chartId : '=chartId', geoLocation: '=geoLocation'},
           link: function(scope,element,attrs) {
-
-            console.log('link>>>',scope);
-
               var stateCode = {
                                 "10": {
                                   "stateAbbr": "DE",
@@ -248,9 +245,6 @@
                               };
 
               var us = scope.geoLocation.data;
-              console.log('scope', scope.geoLocation);
-              console.log('us',us);
-
               var margin = {top: 5, left: 5, bottom: 5, right: 5};
               var mapRatio = 1.1;
 
@@ -345,10 +339,8 @@
                   var datum = stateCode[code];
                   var stateName = datum.name;
                   if (!datum) return;
-                  console.log(d3.mouse(this));
 
                   tooltip = d3.select(this.parentNode).append("text");
-
                   tooltip
                   .attr("x", 15)
                   .attr("y", 30)
@@ -360,8 +352,6 @@
               }
 
               function tooltipHide(d, i) {
-                  console.log('hide');
-
                   tooltip.remove();
               }
 
