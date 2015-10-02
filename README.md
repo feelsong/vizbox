@@ -1,5 +1,5 @@
 # vizbox
-visit vizbox.co[vizbox.co]
+visit [vizbox.co](http://vizbox.co)
 collection of visualizations
 
 #How To Develop
