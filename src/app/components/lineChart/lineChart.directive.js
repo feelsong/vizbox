@@ -65,7 +65,7 @@
                         });
 
             scope.$watch('rows',function() {
-                chart.load({columns:scope.rows,duration:3000});
+                chart.load({columns:scope.rows,duration:1500});
             });
 
           }

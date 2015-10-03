@@ -13,43 +13,20 @@
 
       $scope.pieChartId = 'piechart';
 
-      $scope.pieRows = [
-                             ['d1',  40, 50, 60, 70, 80, 90],
-                             ['d2',  25, 26, 24, 28, 23, 22],
-                             ['d3',  90, 70, 100, 55, 70, 54],
-                             ['d4',  35, 10, 5, 40, 40, 20]
-                        ];
+      $scope.pieRows = getPieData();
 
       $scope.pieInterval = $interval(function() {
-        var pieData = [];
-        pieData.push(arrayCreator('d1',6, 50, 30));
-        pieData.push(arrayCreator('d2',6, 25, 20));
-        pieData.push(arrayCreator('d3',6, 80, 20));
-        pieData.push(arrayCreator('d4',6, 25, 20));
-
-        $scope.pieRows = pieData;
+        $scope.pieRows = getPieData();
       }, 2000);
 
-
-
-      $scope.lineChartId = 'lineChart';
-
-      $scope.lineRows =  [
-                             ['d1', 30, 50, 45, 70, 10, 15],
-                             ['d2', 50, 20, 10, 40, 15, 25]
-                         ];
-
-     $scope.lineInterval = $interval(function() {
-             var lineData = [];
-             lineData.push(arrayCreator('d1',6,50,20))
-             lineData.push(arrayCreator('d2',6,20,15))
-
-             $scope.lineRows = lineData;
-     }, 10000);
-
-
-
-
+      function getPieData() {
+        return [
+          arrayCreator('d1',6, 50, 30),
+          arrayCreator('d2',6, 25, 20),
+          arrayCreator('d3',6, 80, 20),
+          arrayCreator('d4',6, 25, 20)
+        ]
+      }
 
       function arrayCreator(name, length, average, variance) {
         var array = [];
@@ -59,9 +36,86 @@
           var num = average + (0.5 - Math.random())* variance
           array.push(num);
         }
-
-
         return array;
+      }
+
+      //lineChart
+      $scope.lineChartId = 'lineChart';
+      var lineData = new lineDataCreator();
+      lineData.setLength(12);
+      lineData.setAverageAndVariance('d1Data',55,15);
+      lineData.setAverageAndVariance('d2Data',30,20);
+
+      $scope.lineRows =  lineData.getInitialArray();
+      $scope.lineInterval = $interval(function() {
+             $scope.lineRows = lineData.getUpdatedArray();
+      }, 2000);
+
+      function lineDataCreator() {
+        return {
+          length: 0,
+          data: {
+            xData: {
+              array: ['x'],
+              average: 0,
+              variance: 0
+            },
+            d1Data: {
+              array: ['d1'],
+              average: 0,
+              variance: 0
+            },
+            d2Data: {
+              array: ['d2'],
+              average: 0,
+              variance: 0
+            }
+          },
+          setAverageAndVariance: function(name, average, variance) {
+            this.data[name]['average'] = average;
+            this.data[name]['variance'] = variance;
+          },
+          setLength: function(length) {
+            this.length = length;
+          },
+          getInitialArray: function(number) {
+            var _this = this;
+            return Object.keys(_this.data).map(function(key) {
+              var array = _this.data[key].array;
+              var length = _this.length;
+              var average = _this.data[key].average;
+              var variance = _this.data[key].variance;
+              for (var i =0; i < length; i++) {
+                if (key === 'xData') {
+                    array.push(i);
+                } else {
+                    array.push(_this.getNumber(average, variance));
+                  }
+              }
+              return array;
+            })
+          },
+          getUpdatedArray: function() {
+            var _this = this;
+            return Object.keys(this.data).map(function(key) {
+              var array = _this.data[key].array;
+              var length = _this.length;
+              var average = _this.data[key].average;
+              var variance = _this.data[key].variance;
+              array.splice(1,1);
+              if (key === 'xData') {
+                  array.push(+array[array.length-1] + 1);
+              } else {
+                  array.push(_this.getNumber(average, variance))
+              }
+              return array;
+
+            })
+          },
+          getNumber: function(average, variance) {
+            return average + (0.5 - Math.random()* variance);
+          }
+        }
       }
   }
 })();
