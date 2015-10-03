@@ -14,10 +14,10 @@
       $scope.pieChartId = 'piechart';
 
       $scope.pieRows = [
-                             ["d1",  40, 50, 60, 70, 80, 90],
-                             ["d2",  25, 26, 24, 28, 23, 22],
-                             ["d3",  90, 70, 100, 55, 70, 54],
-                             ["d4",  35, 10, 5, 40, 40, 20]
+                             ['d1',  40, 50, 60, 70, 80, 90],
+                             ['d2',  25, 26, 24, 28, 23, 22],
+                             ['d3',  90, 70, 100, 55, 70, 54],
+                             ['d4',  35, 10, 5, 40, 40, 20]
                         ];
 
       $scope.pieInterval = $interval(function() {
@@ -29,6 +29,27 @@
 
         $scope.pieRows = pieData;
       }, 2000);
+
+
+
+      $scope.lineChartId = 'lineChart';
+
+      $scope.lineRows =  [
+                             ['d1', 30, 50, 45, 70, 10, 15],
+                             ['d2', 50, 20, 10, 40, 15, 25]
+                         ];
+
+     $scope.lineInterval = $interval(function() {
+             var lineData = [];
+             lineData.push(arrayCreator('d1',6,50,20))
+             lineData.push(arrayCreator('d2',6,20,15))
+
+             $scope.lineRows = lineData;
+     }, 10000);
+
+
+
+
 
       function arrayCreator(name, length, average, variance) {
         var array = [];
