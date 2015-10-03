@@ -12,32 +12,70 @@
 
 
       $scope.pieChartId = 'piechart';
-
-      $scope.pieRows = getPieData();
+      var pieData = new pieDataCreator();
+      pieData.setLength(6);
+      pieData.setAverageAndVariance('d1Data',50,30);
+      pieData.setAverageAndVariance('d2Data',25,20);
+      pieData.setAverageAndVariance('d3Data',80,20);
+      pieData.setAverageAndVariance('d4Data',25,5);
+      $scope.pieRows = pieData.getData();
 
       $scope.pieInterval = $interval(function() {
-        $scope.pieRows = getPieData();
+        $scope.pieRows = pieData.getData();
       }, 2000);
 
-      function getPieData() {
-        return [
-          arrayCreator('d1',6, 50, 30),
-          arrayCreator('d2',6, 25, 20),
-          arrayCreator('d3',6, 80, 20),
-          arrayCreator('d4',6, 25, 20)
-        ]
-      }
-
-      function arrayCreator(name, length, average, variance) {
-        var array = [];
-        array.push(name);
-
-        for (var i =0; i < length; i++) {
-          var num = average + (0.5 - Math.random())* variance
-          array.push(num);
+      function pieDataCreator() {
+        return {
+          length: 0,
+          data: {
+            d1Data: {
+              array: ['d1'],
+              average: 0,
+              variance: 0
+            },
+            d2Data: {
+              array: ['d2'],
+              average: 0,
+              variance: 0
+            },
+            d3Data: {
+              array: ['d3'],
+              average: 0,
+              variance: 0
+            },
+            d4Data: {
+              array: ['d4'],
+              average: 0,
+              variance: 0
+            }
+          },
+          setAverageAndVariance: function(name, average, variance) {
+            this.data[name]['average'] = average;
+            this.data[name]['variance'] = variance;
+          },
+          setLength: function(length) {
+            this.length = length;
+          },
+          getData: function() {
+            var _this = this;
+            return Object.keys(_this.data).map(function(key) {
+              var array = _this.data[key].array;
+              var length = _this.length;
+              var average = _this.data[key].average;
+              var variance = _this.data[key].variance;
+              for (var i =0; i < length; i++) {
+                array.push(_this.getNumber(average, variance));
+              }
+              return array;
+            })
+          },
+          getNumber: function(average, variance) {
+            return average + (0.5 - Math.random()* variance);
+          }
         }
-        return array;
       }
+
+
 
       //lineChart
       $scope.lineChartId = 'lineChart';
@@ -49,7 +87,7 @@
       $scope.lineRows =  lineData.getInitialArray();
       $scope.lineInterval = $interval(function() {
              $scope.lineRows = lineData.getUpdatedArray();
-      }, 2000);
+      }, 8000);
 
       function lineDataCreator() {
         return {
