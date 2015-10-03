@@ -14,10 +14,10 @@
       $scope.pieChartId = 'piechart';
       var pieData = new pieDataCreator();
       pieData.setLength(6);
-      pieData.setAverageAndVariance('d1Data',50,30);
-      pieData.setAverageAndVariance('d2Data',25,20);
-      pieData.setAverageAndVariance('d3Data',80,20);
-      pieData.setAverageAndVariance('d4Data',25,5);
+      pieData.setAverageAndVariance('d1',50,30);
+      pieData.setAverageAndVariance('d2',25,20);
+      pieData.setAverageAndVariance('d3',80,20);
+      pieData.setAverageAndVariance('d4',25,5);
       $scope.pieRows = pieData.getData();
 
       $scope.pieInterval = $interval(function() {
@@ -28,23 +28,23 @@
         return {
           length: 0,
           data: {
-            d1Data: {
-              array: ['d1'],
+            d1: {
+              array: [],
               average: 0,
               variance: 0
             },
-            d2Data: {
-              array: ['d2'],
+            d2: {
+              array: [],
               average: 0,
               variance: 0
             },
-            d3Data: {
-              array: ['d3'],
+            d3: {
+              array: [],
               average: 0,
               variance: 0
             },
-            d4Data: {
-              array: ['d4'],
+            d4: {
+              array: [],
               average: 0,
               variance: 0
             }
@@ -59,7 +59,8 @@
           getData: function() {
             var _this = this;
             return Object.keys(_this.data).map(function(key) {
-              var array = _this.data[key].array;
+              var array = [];
+              array.push(key);
               var length = _this.length;
               var average = _this.data[key].average;
               var variance = _this.data[key].variance;
