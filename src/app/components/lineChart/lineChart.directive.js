@@ -19,29 +19,53 @@
 
             var chart = c3.generate({
                             bindto: '#' + scope.chartId,
+                            padding: {
+                              top:10,
+                              right:20
+                            },
                             data: {
+                              x: 'x',
                               columns: scope.rows,
                               colors: {
-                                d1:'#73C2FB',
-                                d2:'#0247FE'
+                                d1:'#0247FE',
+                                d2:'#73C2FB'
                               }
                             },
-                            x: 'x',
+
                             axis: {
+                                x: {
+                                  type:'indexed',
+                                  tick: {
+                                    fit: false
+                                  }
+                                },
                                 y: {
-                                    max: 100,
+                                    max: 80,
                                     min: 0,
                                     padding: {
-                                        top: 5,
+                                        top: 0,
                                         bottom:0
+                                    },
+                                    tick: {
+                                      outer:false,
+                                      count:5,
+                                      fit:true
                                     }
                                 }
-                            }
+
+                            },
+                            grid: {
+                               x: {
+                                   show: true
+                               },
+                               y: {
+                                   show: true
+                               }
+                           }
                         });
 
             scope.$watch('rows',function() {
-                 chart.flow({columns:scope.rows,duration:3000, length:6});
-                //  chart.load({columns:scope.rows,duration:3000});
+                chart.load({columns:scope.rows,duration:3000});
             });
 
           }

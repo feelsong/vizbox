@@ -1,0 +1,12 @@
+.c3 path, .tick line {
+  fill:none;
+  stroke:rgba(0,0,0,0);
+}
+
+.c3-grid line {
+    stroke: rgba(199, 199, 199, 0.73);
+}
+
+.c3-xgrid, .c3-ygrid {
+    stroke-dasharray: 5 5;
+}
