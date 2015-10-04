@@ -11,9 +11,12 @@
       $scope.geoLocation = geoLocation;
 
 
-      $scope.pieChartId = 'piechart';
+
+
+
+      $scope.pieChartId = 'pieChart';
       var pieData = new pieDataCreator();
-      pieData.setLength(6);
+      pieData.setLength(12);
       pieData.setAverageAndVariance('d1',50,30);
       pieData.setAverageAndVariance('d2',25,20);
       pieData.setAverageAndVariance('d3',80,20);
@@ -76,7 +79,11 @@
         }
       }
 
+      $scope.barChartId = 'barChart';
 
+      $scope.barRows = $scope.pieRows.slice(0,1);
+
+        console.log('$scope.pieData',$scope.barRows);
 
       //lineChart
       $scope.lineChartId = 'lineChart';
@@ -88,7 +95,7 @@
       $scope.lineRows =  lineData.getInitialArray();
       $scope.lineInterval = $interval(function() {
              $scope.lineRows = lineData.getUpdatedArray();
-      }, 8000);
+      }, 5000);
 
       function lineDataCreator() {
         return {
