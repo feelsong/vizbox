@@ -1,6 +1,6 @@
 # vizbox
-visit [vizbox.co](http://vizbox.co)
-collection of visualizations
+Please visit [vizbox.co](http://vizbox.co)
+for a collection of data visualizations with `d3.js`, `c3.js` and `angular.js`.
 
 #How To Develop
 1. Start with `generator-gulp-angular`
