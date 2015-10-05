@@ -1,0 +1,11 @@
+.land {
+  fill: none;
+  stroke: rgba(white,0.5);
+  stroke-linejoin: round;
+}
+.tooltip-container {
+  position:absolute;
+  .tooltip {
+    opacity:0.9;
+  }
+}
