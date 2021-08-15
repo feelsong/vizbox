@@ -3,7 +3,7 @@
  A collection of data visualizations with `d3.js`, `c3.js` and `angular.js`.
 
 # TODO
-- Make new set of data visualization with Svelte
+- Make a new set of data visualizations with Svelte
 
 # How To Run
 1. `gulp serve` to run.
